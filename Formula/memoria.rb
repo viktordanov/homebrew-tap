@@ -2,19 +2,20 @@ class Memoria < Formula
   desc "Keeps project documentation connected to the code it explains"
   homepage "https://github.com/viktordanov/homebrew-tap"
   version "0.1.0"
-  license "MIT"
-
-  depends_on :macos
 
   on_arm do
     url "https://github.com/viktordanov/homebrew-tap/releases/download/memoria-v0.1.0/memoria-v0.1.0-aarch64-apple-darwin.tar.gz"
-    sha256 "e1b2ceaf29e733917e106951759f85546f8c1f8f3c4999a6bb98a654ecf86043"
+    sha256 "36bd0935cb75b121a314c75e18c585e0344766e27a03d2a06604aaf30171ff6e"
   end
 
   on_intel do
     url "https://github.com/viktordanov/homebrew-tap/releases/download/memoria-v0.1.0/memoria-v0.1.0-x86_64-apple-darwin.tar.gz"
-    sha256 "bcad21171dd4907123674ea2bdff2793bb7aeb4b00928bd9bc45166f7981637d"
+    sha256 "f0f6dfb471f0863e0f7d4a7504e1f58e9e9a333a31a5f8a67d45ad1c5f1bbacd"
   end
+
+  license "MIT"
+
+  depends_on macos: :ventura
 
   def install
     bin.install "memoria"
@@ -24,4 +25,3 @@ class Memoria < Formula
     assert_match "memoria 0.1.0", shell_output("#{bin}/memoria --version")
   end
 end
-

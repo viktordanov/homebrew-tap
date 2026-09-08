@@ -18,30 +18,52 @@ permissions:
 
 jobs:
   test:
-    name: Install on ${{ matrix.architecture }}
-    runs-on: ${{ matrix.runner }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - architecture: Apple Silicon
-            runner: macos-15
-          - architecture: Intel
-            runner: macos-15-intel
+    name: Audit macOS packages on Linux
+    runs-on: ubuntu-24.04
+    env:
+      HOMEBREW_SIMULATE_MACOS_ON_LINUX: 1
 
     steps:
       - name: Check out the tap
         uses: actions/checkout@v7
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@6373c73b318da78d7a3457597e6cc3b6526cbd59
+        with:
+          core: false
+          cask: false
 
       - name: Examine the formula
         run: |
           set -euo pipefail
           brew style Formula/memoria.rb
           brew audit --strict Formula/memoria.rb
+          brew readall --os=all --arch=all .
 
-      - name: Install and test Memoria
+      - name: Verify every published package
         run: |
           set -euo pipefail
-          brew install --formula ./Formula/memoria.rb
-          brew test memoria
-          memoria --version
+          mapfile -t urls < <(grep '^[[:space:]]*url "' Formula/memoria.rb | cut -d '"' -f 2)
+          mapfile -t hashes < <(grep '^[[:space:]]*sha256 "' Formula/memoria.rb | cut -d '"' -f 2)
+          test "${#urls[@]}" -eq 2
+          test "${#hashes[@]}" -eq 2
+
+          for index in 0 1; do
+            archive="$(basename "${urls[$index]}")"
+            target="${archive#memoria-v0.1.0-}"
+            target="${target%.tar.gz}"
+
+            curl --fail --location --retry 3 --output "$archive" "${urls[$index]}"
+            echo "${hashes[$index]}  $archive" | sha256sum --check --strict
+            mkdir -p "inspect-$target"
+            tar -xzf "$archive" -C "inspect-$target"
+            test -x "inspect-$target/memoria"
+            test -f "inspect-$target/LICENSE"
+
+            if [ "$target" = "aarch64-apple-darwin" ]; then
+              file "inspect-$target/memoria" | grep -q 'Mach-O 64-bit arm64'
+            else
+              test "$target" = "x86_64-apple-darwin"
+              file "inspect-$target/memoria" | grep -q 'Mach-O 64-bit x86_64'
+            fi
+          done
