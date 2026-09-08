@@ -1,0 +1,47 @@
+name: Test formula
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Formula/**"
+      - ".github/workflows/test-formula.yml"
+  pull_request:
+    paths:
+      - "Formula/**"
+      - ".github/workflows/test-formula.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Install on ${{ matrix.architecture }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: Apple Silicon
+            runner: macos-15
+          - architecture: Intel
+            runner: macos-15-intel
+
+    steps:
+      - name: Check out the tap
+        uses: actions/checkout@v7
+
+      - name: Examine the formula
+        run: |
+          set -euo pipefail
+          brew style Formula/memoria.rb
+          brew audit --strict Formula/memoria.rb
+
+      - name: Install and test Memoria
+        run: |
+          set -euo pipefail
+          brew install --formula ./Formula/memoria.rb
+          brew test memoria
+          memoria --version
