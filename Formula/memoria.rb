@@ -2,6 +2,7 @@ class Memoria < Formula
   desc "Keeps project documentation connected to the code it explains"
   homepage "https://github.com/viktordanov/homebrew-tap"
   version "0.1.0"
+  license "MIT"
 
   on_arm do
     url "https://github.com/viktordanov/homebrew-tap/releases/download/memoria-v0.1.0/memoria-v0.1.0-aarch64-apple-darwin.tar.gz"
@@ -12,8 +13,6 @@ class Memoria < Formula
     url "https://github.com/viktordanov/homebrew-tap/releases/download/memoria-v0.1.0/memoria-v0.1.0-x86_64-apple-darwin.tar.gz"
     sha256 "f0f6dfb471f0863e0f7d4a7504e1f58e9e9a333a31a5f8a67d45ad1c5f1bbacd"
   end
-
-  license "MIT"
 
   depends_on macos: :ventura
 
