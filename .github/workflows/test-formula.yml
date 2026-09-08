@@ -37,8 +37,8 @@ jobs:
         run: |
           set -euo pipefail
           brew style Formula/memoria.rb
-          brew audit --strict Formula/memoria.rb
-          brew readall --os=all --arch=all .
+          brew audit --strict viktordanov/tap/memoria
+          brew readall --os=all --arch=all viktordanov/tap
 
       - name: Verify every published package
         run: |
