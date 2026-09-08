@@ -44,7 +44,7 @@ jobs:
         run: |
           set -euo pipefail
           repository="$(sed -n 's/^[[:space:]]*homepage "\([^"]*\)"/\1/p' Formula/memoria.rb)"
-          version="$(sed -n 's/^[[:space:]]*version "\([^"]*\)"/\1/p' Formula/memoria.rb)"
+          version="$(sed -n 's#.*releases/download/memoria-v\([^/]*\)/.*#\1#p' Formula/memoria.rb)"
           mapfile -t hashes < <(grep -oE '[0-9a-f]{64}' Formula/memoria.rb)
           targets=(aarch64-apple-darwin x86_64-apple-darwin)
 
