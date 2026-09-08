@@ -43,17 +43,21 @@ jobs:
       - name: Verify every published package
         run: |
           set -euo pipefail
-          mapfile -t urls < <(grep '^[[:space:]]*url "' Formula/memoria.rb | cut -d '"' -f 2)
-          mapfile -t hashes < <(grep '^[[:space:]]*sha256 "' Formula/memoria.rb | cut -d '"' -f 2)
-          test "${#urls[@]}" -eq 2
+          repository="$(sed -n 's/^[[:space:]]*homepage "\([^"]*\)"/\1/p' Formula/memoria.rb)"
+          version="$(sed -n 's/^[[:space:]]*version "\([^"]*\)"/\1/p' Formula/memoria.rb)"
+          mapfile -t hashes < <(grep -oE '[0-9a-f]{64}' Formula/memoria.rb)
+          targets=(aarch64-apple-darwin x86_64-apple-darwin)
+
+          test -n "$repository"
+          test -n "$version"
           test "${#hashes[@]}" -eq 2
 
           for index in 0 1; do
-            archive="$(basename "${urls[$index]}")"
-            target="${archive#memoria-v0.1.0-}"
-            target="${target%.tar.gz}"
+            target="${targets[$index]}"
+            archive="memoria-v${version}-${target}.tar.gz"
+            url="${repository}/releases/download/memoria-v${version}/${archive}"
 
-            curl --fail --location --retry 3 --output "$archive" "${urls[$index]}"
+            curl --fail --location --retry 3 --output "$archive" "$url"
             echo "${hashes[$index]}  $archive" | sha256sum --check --strict
             mkdir -p "inspect-$target"
             tar -xzf "$archive" -C "inspect-$target"
