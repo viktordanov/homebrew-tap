@@ -6,7 +6,7 @@ Install command-line tools from this Homebrew tap.
 
 - [Formulae](#formulae)
 - [Install Memoria](#install-memoria)
-- [Upgrade to 0.2.0](#upgrade-to-020)
+- [Upgrade Memoria](#upgrade-memoria)
 - [Release model](#release-model)
 
 ## Formulae
@@ -38,14 +38,14 @@ Remove Memoria:
 brew uninstall memoria
 ```
 
-## Upgrade to 0.2.0
+## Upgrade Memoria
 
-The formula installs Memoria 0.2.0 on macOS Ventura or newer.
-This release replaces `.memoria/state.json` with `memoria.lock` beside `memoria.toml`.
-It requires version 2 configuration and does not migrate legacy state automatically.
+The formula installs Memoria 0.3.0 on macOS Ventura or newer.
+The [changelog](https://github.com/viktordanov/rs-memoria/blob/v0.3.0/CHANGELOG.md) describes the new commands and output improvements.
+Version 0.3.0 retains the binary lock codec and whole-file freshness rules from 0.2.0.
 
-Before you change project state, preserve the legacy state and configuration outside the worktree.
-Then follow the [0.2.0 cutover procedure](https://github.com/viktordanov/rs-memoria/blob/v0.2.0/docs/releases/0.2.0.md).
+If your project still uses `.memoria/state.json`, preserve the legacy state and configuration outside the worktree.
+Then use the [0.2.0 cutover procedure](https://github.com/viktordanov/rs-memoria/blob/v0.2.0/docs/releases/0.2.0.md).
 The binary upgrade does not upgrade installed agent skills or activate client hooks.
 
 ## Release model
