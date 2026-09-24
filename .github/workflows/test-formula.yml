@@ -36,8 +36,8 @@ jobs:
       - name: Examine the formula
         run: |
           set -euo pipefail
-          brew style Formula/memoria.rb
-          brew audit --strict viktordanov/tap/memoria
+          brew style Formula
+          brew audit --strict viktordanov/tap/memoria viktordanov/tap/uah
           brew readall --os=all --arch=all viktordanov/tap
 
       - name: Verify every published package

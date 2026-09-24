@@ -7,6 +7,7 @@ Install command-line tools from this Homebrew tap.
 - [Formulae](#formulae)
 - [Install Memoria](#install-memoria)
 - [Upgrade Memoria](#upgrade-memoria)
+- [Install uah](#install-uah)
 - [Release model](#release-model)
 
 ## Formulae
@@ -14,6 +15,7 @@ Install command-line tools from this Homebrew tap.
 | Formula | Description |
 | --- | --- |
 | [Memoria](Formula/memoria.rb) | Keeps project documentation connected to the code it explains. |
+| [uah](Formula/uah.rb) | Terminal coding agent that works like Codex, built on unreal-agent. |
 
 ## Install Memoria
 
@@ -47,6 +49,18 @@ Version 0.3.0 retains the binary lock codec and whole-file freshness rules from 
 If your project still uses `.memoria/state.json`, preserve the legacy state and configuration outside the worktree.
 Then use the [0.2.0 cutover procedure](https://github.com/viktordanov/rs-memoria/blob/v0.2.0/docs/releases/0.2.0.md).
 The binary upgrade does not upgrade installed agent skills or activate client hooks.
+
+## Install uah
+
+uah is a terminal coding agent that works like Codex. Its source is [uagent-harness](https://github.com/viktordanov/uagent-harness).
+
+```sh
+brew install viktordanov/tap/uah
+codex login     # uah uses your ChatGPT login
+uah doctor      # checks the setup
+```
+
+The formula installs the macOS or Linux binary for your CPU from the uagent-harness GitHub release, checks its SHA-256, and installs bash, zsh, and fish completions.
 
 ## Release model
 
