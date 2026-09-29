@@ -42,13 +42,24 @@ brew uninstall memoria
 
 ## Upgrade Memoria
 
-The formula installs Memoria 0.3.0 on macOS Ventura or newer.
-The [changelog](https://github.com/viktordanov/rs-memoria/blob/v0.3.0/CHANGELOG.md) describes the new commands and output improvements.
-Version 0.3.0 retains the binary lock codec and whole-file freshness rules from 0.2.0.
+The formula installs Memoria 0.7.0 on macOS Ventura or newer.
+The [migration guide](https://github.com/viktordanov/rs-memoria/blob/v0.7.0/CHANGELOG.md#migration-to-070) describes the breaking changes.
+
+1. Update local, agent, and CI executables to 0.7.0 together.
+2. Set `version = 3` in `memoria.toml` and each sidecar that declares a version.
+3. Run `memoria status` and `memoria review`. A nested README starts a boundary only through an explicit link or import.
+4. Regenerate disposable review artifacts and update installed skills and CI references.
+5. Review queued documents normally before acknowledgement.
+
+Keep `memoria.lock`. The first ordinary write upgrades format 2 to 3 while preserving existing review history.
+Legacy coverage remains unknown where reconstruction cannot prove it, until that document receives a normal review and acknowledgement.
+Memoria 0.6 cannot read format 3. Do not downgrade the configuration or replace the lock.
 
 If your project still uses `.memoria/state.json`, preserve the legacy state and configuration outside the worktree.
 Then use the [0.2.0 cutover procedure](https://github.com/viktordanov/rs-memoria/blob/v0.2.0/docs/releases/0.2.0.md).
 The binary upgrade does not upgrade installed agent skills or activate client hooks.
+
+The macOS archives are cross-compiled on Linux. Native macOS runtime smoke was not run for this release.
 
 ## Install uah
 
