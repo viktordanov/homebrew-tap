@@ -5,23 +5,23 @@ class Uah < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.1.1/uah-1.1.1-aarch64-apple-darwin.tar.gz"
-      sha256 "4fa7228c47a91f2176d31ab79739c3c27d20812cd413505e347e92994900986f"
+      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.2.0/uah-1.2.0-aarch64-apple-darwin.tar.gz"
+      sha256 "f1fa8f50d7ae5c1342249c08629b80520cfdfb3ed137f62ff1aec113234acacf"
     end
     on_intel do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.1.1/uah-1.1.1-x86_64-apple-darwin.tar.gz"
-      sha256 "a258e5001f99368a71f4d64cb7338b3f2af1a95124b596d817a1d1891377e0d2"
+      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.2.0/uah-1.2.0-x86_64-apple-darwin.tar.gz"
+      sha256 "2221ab7f3deb9d32bd75b2c9103a83f7440297ccc1a414f6e68878bdabf18534"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.1.1/uah-1.1.1-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "f7e2df4460cd1678709b4f22a3ef3d0f74e3e8b4d5833125c05fe6f4f16a02ec"
+      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.2.0/uah-1.2.0-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "a61affbf686d066cd18480b435b4cb1aa62f4dda8518bf92eb8434af49b22eff"
     end
     on_intel do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.1.1/uah-1.1.1-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "1e61db59985f081a1363f7885f919c22315a75f9cb49912a5860ffda47e5fde1"
+      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.2.0/uah-1.2.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "8ff502f44495a0ab1180aed1c36afe048054613f3f91605b8898ca8dbfcb74ae"
     end
   end
 
