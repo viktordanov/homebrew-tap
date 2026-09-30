@@ -1,27 +1,27 @@
 class Uah < Formula
   desc "Terminal coding agent that works like Codex, built on unreal-agent"
-  homepage "https://github.com/viktordanov/uagent-harness"
+  homepage "https://github.com/viktordanov/uah"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.4.1/uah-1.4.1-aarch64-apple-darwin.tar.gz"
-      sha256 "8b902b770cc3025bc98ea72702721bf3c9d47f36b442db5a34d7e4e881a5fb04"
+      url "https://github.com/viktordanov/uah/releases/download/v1.5.0/uah-1.5.0-aarch64-apple-darwin.tar.gz"
+      sha256 "de12c85aaecd22c355f4ea1323fd42c4ea36d2b3cc059f1eb4ea70173cbdfd91"
     end
     on_intel do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.4.1/uah-1.4.1-x86_64-apple-darwin.tar.gz"
-      sha256 "9d5860f5a9dbfcf0125ef538bd17853b58e2f1261267702d179cd3fe245c015e"
+      url "https://github.com/viktordanov/uah/releases/download/v1.5.0/uah-1.5.0-x86_64-apple-darwin.tar.gz"
+      sha256 "9462ed1281fa102c1d5313de2121278908bab40467fb4f9f7a7c21fad125832e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.4.1/uah-1.4.1-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "8befa01c8adc0cf35747ac010bfd910c7166620a8101635038fc6032eb95e37b"
+      url "https://github.com/viktordanov/uah/releases/download/v1.5.0/uah-1.5.0-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "86a234550e42fae2d9a21e8665f88a4ead9f0ca854b05c7d219b7faacfe49ccd"
     end
     on_intel do
-      url "https://github.com/viktordanov/uagent-harness/releases/download/v1.4.1/uah-1.4.1-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "bcd79ab784a1275a406acdaabe78abb6dd0438913f6c07ae545068534c972e23"
+      url "https://github.com/viktordanov/uah/releases/download/v1.5.0/uah-1.5.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "123d27bd1cef7bae4cbb4627c96bb3793483522d24130ca80ec73e500d7f9667"
     end
   end
 
