@@ -42,24 +42,24 @@ brew uninstall memoria
 
 ## Upgrade Memoria
 
-The formula installs Memoria 0.7.0 on macOS Ventura or newer.
-The [migration guide](https://github.com/viktordanov/rs-memoria/blob/v0.7.0/CHANGELOG.md#migration-to-070) describes the breaking changes.
+The formula installs Memoria 0.8.0 on macOS Ventura or newer.
+The [upgrade notes](https://github.com/viktordanov/rs-memoria/blob/v0.8.0/CHANGELOG.md#migration-to-080) describe the output changes.
 
-1. Update local, agent, and CI executables to 0.7.0 together.
-2. Set `version = 3` in `memoria.toml` and each sidecar that declares a version.
-3. Run `memoria status` and `memoria review`. A nested README starts a boundary only through an explicit link or import.
-4. Regenerate disposable review artifacts and update installed skills and CI references.
-5. Review queued documents normally before acknowledgement.
+No state, configuration, token, or saved-artifact migration is required from 0.7.0.
+Existing JSON fields remain. The review plan adds `data.guidance_assessment`.
 
-Keep `memoria.lock`. The first ordinary write upgrades format 2 to 3 while preserving existing review history.
-Legacy coverage remains unknown where reconstruction cannot prove it, until that document receives a normal review and acknowledgement.
-Memoria 0.6 cannot read format 3. Do not downgrade the configuration or replace the lock.
+1. Upgrade the executable with `brew upgrade memoria`.
+2. Use `--verbose` or `memoria lint` for advisory hints.
+3. Run `memoria guidance --changed` to assess changed guidance.
+4. Upgrade each installed local agent skill with `memoria agent upgrade` and its target.
+5. If you require immediate writer-lock refusal, set `MEMORIA_LOCK_WAIT_MS=0`. The default wait is 10 seconds.
 
-If your project still uses `.memoria/state.json`, preserve the legacy state and configuration outside the worktree.
-Then use the [0.2.0 cutover procedure](https://github.com/viktordanov/rs-memoria/blob/v0.2.0/docs/releases/0.2.0.md).
-The binary upgrade does not upgrade installed agent skills or activate client hooks.
+For versions before 0.7.0, follow the [earlier migration notes](https://github.com/viktordanov/rs-memoria/blob/v0.8.0/CHANGELOG.md#migration-to-070).
+Keep your committed review history. The binary upgrade does not activate client hooks.
 
-The macOS archives are cross-compiled on Linux. Native macOS runtime smoke was not run for this release.
+Known limits: the evidence budget can silently omit hunks, including with `--details` (OBS001).
+A preview test remains sensitive to Git background maintenance; CI disables automatic maintenance (OBS002).
+The macOS archives are cross-compiled on Linux. Native macOS runtime smoke and Homebrew installation were not run for this release.
 
 ## Install uah
 
