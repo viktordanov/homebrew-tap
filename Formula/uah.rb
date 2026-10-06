@@ -5,23 +5,23 @@ class Uah < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/viktordanov/uah/releases/download/v1.9.7/uah-1.9.7-aarch64-apple-darwin.tar.gz"
-      sha256 "ba4244559c7bdd6644ca631d9cb9a42733d83214814fa0c8851e0fc570d1a67a"
+      url "https://github.com/viktordanov/uah/releases/download/v1.9.8/uah-1.9.8-aarch64-apple-darwin.tar.gz"
+      sha256 "bc9410f24308c6a66dadef79e2db2c764afd432c74795e4695a6824fc7423c38"
     end
     on_intel do
-      url "https://github.com/viktordanov/uah/releases/download/v1.9.7/uah-1.9.7-x86_64-apple-darwin.tar.gz"
-      sha256 "4d0dc54731a339c619bfa4740f5dc6d0b9298a9b4104b3d95537ae51139e1664"
+      url "https://github.com/viktordanov/uah/releases/download/v1.9.8/uah-1.9.8-x86_64-apple-darwin.tar.gz"
+      sha256 "ede9705a20ed5390044550946dea65d64c7a2f18d504aff632a4f7ad55482b04"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/viktordanov/uah/releases/download/v1.9.7/uah-1.9.7-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "da5a1bf451e15db9cbafc87540598241280ae91bc1f34bd0fad4e309469ea007"
+      url "https://github.com/viktordanov/uah/releases/download/v1.9.8/uah-1.9.8-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "8fb09609446c2e08c4d48fbd05a9d40253d10c77f75231639550621ba7ff2fa1"
     end
     on_intel do
-      url "https://github.com/viktordanov/uah/releases/download/v1.9.7/uah-1.9.7-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "900b78017a66b3a4c23c64ec7189ffe1e529e4365e36ebb40f94ce3b5e684437"
+      url "https://github.com/viktordanov/uah/releases/download/v1.9.8/uah-1.9.8-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "8f34965601f99202ded4be58b1cb229ae7771b9d5eccb6dfe5293eced47c5c1e"
     end
   end
 
