@@ -2,10 +2,10 @@ class Memoria < Formula
   desc "Keeps project documentation connected to the code it explains"
   homepage "https://github.com/viktordanov/homebrew-tap"
   archive_arch = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-  url "https://github.com/viktordanov/homebrew-tap/releases/download/memoria-v0.9.0/" \
-      "memoria-v0.9.0-#{archive_arch}-apple-darwin.tar.gz"
-  arm64_sha256 = "e21f83b10cdb666a8d76bc53102d41b1f3c842083492bc5fced1f4b1bea54463"
-  x86_64_sha256 = "b61825f242e93f86b309eeb2be9181cf941782bfd94a167a3a1dfbaf910397ff"
+  url "https://github.com/viktordanov/homebrew-tap/releases/download/memoria-v0.9.1/" \
+      "memoria-v0.9.1-#{archive_arch}-apple-darwin.tar.gz"
+  arm64_sha256 = "4105bc15180711295f4f21c253306b28f6fe7e068e6d65da95d989ced985b4c5"
+  x86_64_sha256 = "f71ad58cdf2290aeefbd58a01719886f5b2d34e38df2063297ad5226b4db71db"
   sha256 Hardware::CPU.arm? ? arm64_sha256 : x86_64_sha256
   license "MIT"
 
@@ -16,6 +16,6 @@ class Memoria < Formula
   end
 
   test do
-    assert_match "memoria 0.9.0", shell_output("#{bin}/memoria --version")
+    assert_match "memoria 0.9.1", shell_output("#{bin}/memoria --version")
   end
 end

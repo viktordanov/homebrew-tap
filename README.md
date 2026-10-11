@@ -42,18 +42,17 @@ brew uninstall memoria
 
 ## Upgrade Memoria
 
-The formula installs Memoria 0.9.0 on macOS Ventura or newer.
-The [migration notes](https://github.com/viktordanov/rs-memoria/blob/v0.9.0/CHANGELOG.md#migration-to-090) list every upgrade step.
+The formula installs Memoria 0.9.1 on macOS Ventura or newer.
+The [changelog](https://github.com/viktordanov/rs-memoria/blob/v0.9.1/CHANGELOG.md#091---2026-10-11) lists the changes.
 
-Update every Memoria executable, including setup-action `version:` pins, before a project adds `section_guidance_files`.
-Memoria 0.8 refuses that key. The token, `memoria.lock`, and configuration `version = 3` do not change.
+0.9.1 batches Git object reads, raises the history read limit to 4,096, and adds `memoria ack <DOCUMENT> --cover`.
+It changes no state, configuration, token, or saved-artifact format.
 
-1. Upgrade the executable with `brew upgrade memoria`, and update agent and CI executables to 0.9.0.
-2. Capture in-flight review artifacts again. Manifest 2, packet 4, and view 2 artifacts are refused with regeneration text.
-3. Upgrade each installed local agent skill with `memoria agent upgrade` and its target.
-4. If a section names a file whose name starts with `!`, replace that token with a pattern that matches it, for example `?keep.rs`.
+1. Upgrade the executable with `brew upgrade memoria`, and update agent and CI executables to 0.9.1.
+2. Upgrade each installed local agent skill with `memoria agent upgrade` and its target. The skill text is unchanged, but its recorded version is not.
+3. If `ack` prints `History check stopped at its limit`, commit the reviewed bytes and run the `memoria ack <DOCUMENT> --cover` command that it prints.
 
-For versions before 0.8.0, follow the [earlier migration notes](https://github.com/viktordanov/rs-memoria/blob/v0.9.0/CHANGELOG.md#migration-to-080).
+From 0.8.x, first follow the [0.9.0 migration notes](https://github.com/viktordanov/rs-memoria/blob/v0.9.1/CHANGELOG.md#migration-to-090).
 Keep your committed review history. The binary upgrade does not activate client hooks.
 
 Known limits: the evidence budget can silently omit hunks, including with `--details` (OBS001).
