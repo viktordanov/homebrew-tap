@@ -42,17 +42,17 @@ brew uninstall memoria
 
 ## Upgrade Memoria
 
-The formula installs Memoria 0.9.1 on macOS Ventura or newer.
-The [changelog](https://github.com/viktordanov/rs-memoria/blob/v0.9.1/CHANGELOG.md#091---2026-10-11) lists the changes.
+The formula installs Memoria 0.9.2 on macOS Ventura or newer.
+The [changelog](https://github.com/viktordanov/rs-memoria/blob/v0.9.2/CHANGELOG.md#092---2026-10-11) lists the changes.
 
-0.9.1 batches Git object reads, raises the history read limit to 4,096, and adds `memoria ack <DOCUMENT> --cover`.
+0.9.2 adds `memoria onboard`, the starting point for a person or an agent, and colors human output on a terminal.
 It changes no state, configuration, token, or saved-artifact format.
 
-1. Upgrade the executable with `brew upgrade memoria`, and update agent and CI executables to 0.9.1.
-2. Upgrade each installed local agent skill with `memoria agent upgrade` and its target. The skill text is unchanged, but its recorded version is not.
-3. If `ack` prints `History check stopped at its limit`, commit the reviewed bytes and run the `memoria ack <DOCUMENT> --cover` command that it prints.
+1. Upgrade the executable with `brew upgrade memoria`, and update agent and CI executables to 0.9.2.
+2. Upgrade each installed local agent skill with `memoria agent upgrade --target <claude|codex>`. The skill text is unchanged, but its recorded version is not.
+3. A script that reads human output through a pseudo-terminal now sees colors: add `--color never`, set `NO_COLOR=1`, or read `--format json`.
 
-From 0.8.x, first follow the [0.9.0 migration notes](https://github.com/viktordanov/rs-memoria/blob/v0.9.1/CHANGELOG.md#migration-to-090).
+From 0.8.x, first follow the [0.9.0 migration notes](https://github.com/viktordanov/rs-memoria/blob/v0.9.2/CHANGELOG.md#migration-to-090).
 Keep your committed review history. The binary upgrade does not activate client hooks.
 
 Known limits: the evidence budget can silently omit hunks, including with `--details` (OBS001).
